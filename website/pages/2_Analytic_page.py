@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pandas as pd
 import json
@@ -6,6 +7,7 @@ import ast
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 import plotly.graph_objects as go
+
 
 # ----------------------------------
 # PAGE CONFIG
@@ -24,20 +26,39 @@ if "wc_sector" not in st.session_state:
     st.session_state.wc_sector = "All"
 
 # ----------------------------------
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # /app/website
+DATA_DIR = os.path.join(BASE_DIR, "dataset")
+
 # LOAD DATA 
+# ----------------------------------
 # ----------------------------------
 @st.cache_data
 def load_data():
-    sector_stats = pd.read_csv("dataset/sector_stats.csv")
-    properties = pd.read_csv("dataset/gurgaon_properties.csv")
-    main_df = pd.read_csv("dataset/new_latlong.csv")
+    sector_stats = pd.read_csv(
+        os.path.join(DATA_DIR, "sector_stats.csv")
+    )
 
-    with open("dataset/gurugram_sectors_clean.geojson", "r") as f:
+    properties = pd.read_csv(
+        os.path.join(DATA_DIR, "gurgaon_properties.csv")
+    )
+
+    main_df = pd.read_csv(
+        os.path.join(DATA_DIR, "new_latlong.csv")
+    )
+
+    with open(
+        os.path.join(DATA_DIR, "gurugram_sectors_clean.geojson"),
+        "r",
+        encoding="utf-8"
+    ) as f:
         geojson = json.load(f)
 
     return sector_stats, properties, main_df, geojson
 
+
 sector_stats, feature_df, main_df, clean_geojson = load_data()
+
 
 # ----------------------------------
 # FLOOR RANGE BUCKETING

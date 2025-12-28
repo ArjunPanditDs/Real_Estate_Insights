@@ -1,3 +1,4 @@
+import os
 import warnings
 from sklearn.exceptions import InconsistentVersionWarning
 warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
@@ -6,6 +7,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+
 
 # --------------------------------------------------
 # PAGE CONFIG
@@ -25,9 +27,19 @@ st.divider()
 
 # --------------------------------------------------
 # LOAD MODEL & DATA
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # /app/website
+DATA_DIR = os.path.join(BASE_DIR, "dataset")
+
 # --------------------------------------------------
-df = joblib.load("dataset/df.pkl")
-pipeline = joblib.load("dataset/price_prediction.pkl")
+df = joblib.load(
+    os.path.join(DATA_DIR, "df.pkl")
+)
+
+pipeline = joblib.load(
+    os.path.join(DATA_DIR, "price_prediction.pkl")
+)
+
 
 # --------------------------------------------------
 # INPUT SECTION: 4 ROWS × 3 COLUMNS (centered)

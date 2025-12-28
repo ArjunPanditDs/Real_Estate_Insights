@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pickle
 import pandas as pd
@@ -12,18 +13,36 @@ st.set_page_config(
     layout="wide"
 )
 
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # /app/website
+DATA_DIR = os.path.join(BASE_DIR, "dataset")
+
 # --------------------------------------------------
-# LOAD DATA
 # --------------------------------------------------
-location_df = pickle.load(open('dataset/distance_location.pkl', 'rb'))
-url_df = pickle.load(open('dataset/url.pkl', 'rb'))
+# LOAD DATA (DOCKER & AWS SAFE)
+# --------------------------------------------------
+
+location_df = pickle.load(
+    open(os.path.join(DATA_DIR, "distance_location.pkl"), "rb")
+)
+
+url_df = pickle.load(
+    open(os.path.join(DATA_DIR, "url.pkl"), "rb")
+)
 
 # Property → URL mapping
-url_dict = url_df.set_index('PropertyName')['Link'].to_dict()
+url_dict = url_df.set_index("PropertyName")["Link"].to_dict()
 
-cosine_sim1 = pickle.load(open('dataset/Top_facilities.pkl', 'rb'))
-cosine_sim2 = pickle.load(open('dataset/price_based.pkl', 'rb'))
-cosine_sim3 = pickle.load(open('dataset/location_based.pkl', 'rb'))
+cosine_sim1 = pickle.load(
+    open(os.path.join(DATA_DIR, "Top_facilities.pkl"), "rb")
+)
+
+cosine_sim2 = pickle.load(
+    open(os.path.join(DATA_DIR, "price_based.pkl"), "rb")
+)
+
+cosine_sim3 = pickle.load(
+    open(os.path.join(DATA_DIR, "location_based.pkl"), "rb")
+)
 
 # --------------------------------------------------
 # RECOMMENDER FUNCTION
