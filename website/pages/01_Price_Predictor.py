@@ -1,3 +1,6 @@
+print("🔥 PREDICTOR FILE LOADED")
+
+
 import os
 import warnings
 from sklearn.exceptions import InconsistentVersionWarning
