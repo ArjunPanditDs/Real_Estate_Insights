@@ -12,6 +12,17 @@ The real estate industry is highly data-driven, yet buyers and investors often r
 The dataset is currently limited to **Gurgaon (India)**, with future plans to expand to multiple cities and deploy the solution on cloud platforms such as AWS.
 
 ---
+## 🚀 Live Demo
+🔗 http://16.170.140.55:8501
+
+## 🐳 Docker
+This application is containerized using Docker and deployed on AWS EC2.
+
+## ☁️ AWS Deployment
+- EC2 (Ubuntu)
+- Docker + Docker Hub
+- Port 8501 exposed
+- Streamlit web app
 
 ## 🚀 Features
 
