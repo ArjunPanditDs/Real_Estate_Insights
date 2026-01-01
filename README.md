@@ -133,10 +133,21 @@ Final model:
 
 ---
 
-## Author
+## 👥 Team & Contributions
 
-- **Arjun Pandit**
-- **arjun.pandit.ds@gmail.com**
+This project was collaboratively developed as a team effort.
+
+- **Arjun Pandit**  
+  *Machine Learning & Model Development*  
+  XGBoost model training, tuning, evaluation, and deployment-ready serialization.
+
+- **Ayush Raj**  
+  *Data Analysis & Feature Engineering*  
+  Exploratory Data Analysis (EDA), feature engineering, data preprocessing, and analytical insights.
+
+- **Samjeet**  
+  *Data Collection & Web Scraping*  
+  Web scraping, raw data extraction, and dataset preparation from real estate platforms.
 
 ---
 
@@ -149,3 +160,5 @@ Final model:
 ---
 
 ⭐ If you find this project useful, consider giving it a star on GitHub!
+## Team Collaboration
+Project collaboratively developed using GitHub.
