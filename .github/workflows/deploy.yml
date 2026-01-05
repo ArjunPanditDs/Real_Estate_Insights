@@ -13,6 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Debug secrets (safe)
+        run: |
+          echo "Username is set: ${{ secrets.DOCKER_USERNAME != '' }}"
+          echo "Password is set: ${{ secrets.DOCKER_PASSWORD != '' }}"
+
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -20,12 +25,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: |
-          docker build -t arjunpandit/real_estate_insights:latest .
+        run: docker build -t arjunpandit/real_estate_insights:latest .
 
       - name: Push Docker image
-        run: |
-          docker push arjunpandit/real_estate_insights:latest
+        run: docker push arjunpandit/real_estate_insights:latest
 
       - name: Deploy on AWS EC2
         uses: appleboy/ssh-action@v1.0.0
@@ -37,4 +40,4 @@ jobs:
             docker stop real_estate_app || true
             docker rm real_estate_app || true
             docker pull arjunpandit/real_estate_insights:latest
-            docker run -d -p 8501:8501 --name real_estate_app arjunpandit/real_estate_insights:latest
+            docker run -d -p 8501:8501 --restart unless-stopped --name real_estate_app arjunpandit/real_estate_insights:latest
