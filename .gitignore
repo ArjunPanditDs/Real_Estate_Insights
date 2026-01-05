@@ -1,5 +1,14 @@
-__pycache__/
+# Jupyter Notebook junk
 .ipynb_checkpoints/
-.env
-*.log
-.DS_Store
+**/.ipynb_checkpoints/
+
+# Docker build garbage
+auth
+internal
+exporting
+extracting
+naming
+resolve
+transferring
+unpacking
+sha256-*
